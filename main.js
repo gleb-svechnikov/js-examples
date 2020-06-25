@@ -15,3 +15,23 @@ function getGBasedonLocation() {
     document.getElementsByTagName('output')[0].textContent = localG
   })
 }
+
+function loadBooks() {
+  const url =
+    'https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json'
+  fetch('books.json')
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+      document.getElementsByTagName('pre')[0].textContent = JSON.stringify(
+        data,
+        null,
+        2
+      )
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+}
