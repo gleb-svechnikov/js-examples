@@ -35,3 +35,40 @@ function loadBooks() {
       console.log(err)
     })
 }
+
+function loadBooksToTheTable() {
+  const url =
+    'https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json'
+  fetch('books.json')
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      console.log(data)
+      const tableReference = document.getElementsByTagName('table')[0]
+      const columns = ['Name', 'Author']
+      let header = document.createElement('thead')
+      header.insertRow()
+      for (let i = 0; i < columns.length; i++) {
+        let headerCell = document.createElement('th')
+        headerCell.align = 'left'
+        headerCell.innerHTML = columns[i]
+        header.appendChild(headerCell)
+      }
+      tableReference.appendChild(header)
+      let body = document.createElement('tbody')
+      data.forEach((book) => {
+        let row = document.createElement('TR')
+        let cell1 = row.insertCell(0)
+        let cell2 = row.insertCell(1)
+        cell1.innerHTML = book.title
+        cell2.innerHTML = book.author
+
+        body.appendChild(row)
+      })
+      tableReference.appendChild(body)
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+}
