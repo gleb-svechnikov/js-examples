@@ -1,3 +1,6 @@
+const url = 'https://js-examples.vercel.app/books.json'
+// const url =
+//     'https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json'
 function getGBasedonLocation() {
   navigator.geolocation.getCurrentPosition((position) => {
     console.log(position.coords)
@@ -17,34 +20,32 @@ function getGBasedonLocation() {
 }
 
 function loadBooks() {
-  const url =
-    'https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json'
-  fetch('books.json')
-    .then(function (response) {
+  const books = fetch(url)
+    .then((response) => {
       return response.json()
     })
-    .then(function (data) {
+    .then((data) => {
       console.log(data)
-      document.getElementsByTagName('pre')[0].textContent = JSON.stringify(
-        data,
-        null,
-        2
-      )
     })
-    .catch(function (err) {
-      console.log(err)
+    .catch((error) => {
+      return error
     })
+  console.log(books)
+  return books
 }
 
-function loadBooksToTheTable() {
-  const url =
-    'https://gist.githubusercontent.com/nanotaboada/6396437/raw/82dca67cc3b6a5ccfcf8af012664cdaa0025d999/books.json'
-  fetch('books.json')
+function loadAndShowBooks() {
+  fetch(url)
     .then(function (response) {
       return response.json()
     })
     .then(function (data) {
       console.log(data)
+      // document.getElementsByTagName('pre')[0].textContent = JSON.stringify(
+      //   data,
+      //   null,
+      //   2
+      // )
       const tableReference = document.getElementsByTagName('table')[0]
       const columns = ['Name', 'Author']
       let header = document.createElement('thead')
