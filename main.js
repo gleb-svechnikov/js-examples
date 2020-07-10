@@ -70,36 +70,24 @@ function updateBooks(tableReference, data) {
   })
   tableReference.replaceChild(newBody, tableReference.tBodies[0])
 }
+function getUnique(array) {
+  const arrayStringified = array.map((item) => JSON.stringify(item))
+  console.log(arrayStringified)
+  return [...new Set(arrayStringified)].map((item) => JSON.parse(item))
+}
 
 async function loadAndShowBooks() {
   bookList = await loadBooks()
-  console.log(bookList)
+  let uniquebookList = getUnique(bookList)
+  console.log(bookList, uniquebookList)
   const columns = ['Name', 'Author']
   const tableReference = document.getElementsByTagName('table')[0]
   if (bookList.length > 0) {
-    showBooks(columns, tableReference, bookList)
+    showBooks(columns, tableReference, uniquebookList)
   }
 }
 // function sleep(ms) {
 //   return new Promise((resolve) => setTimeout(resolve, ms))
-// }
-
-// function infiniteLoop() {
-//   const iceCapsAreMelting = true
-//   let polarBears = 5
-//   sleep(2000).then(() => {
-//     // Инициируем бесконечный цикл
-//     while (iceCapsAreMelting) {
-//       console.log(`There are ${polarBears} polar bears.`)
-//       polarBears--
-
-//       // Выставляем условие выхода из бесконечного цикла
-//       // if (polarBears === 0) {
-//       //   console.log('There are no polar bears left.')
-//       //   break
-//       // }
-//     }
-//   })
 // }
 
 function updateSearch(event) {
