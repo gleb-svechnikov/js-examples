@@ -38,10 +38,15 @@ let bookList = []
 function showBooks(columns, tableReference, data) {
   let header = document.createElement('thead')
   header.insertRow()
-  for (let i = 0; i < columns.length; i++) {
+  for (const column of columns) {
     let headerCell = document.createElement('th')
-    headerCell.align = 'left'
-    headerCell.innerHTML = columns[i]
+    const sortButton = `
+    <button name="sort" onclick="updateSort()">
+      ↓
+    </button>
+    `
+    headerCell.innerHTML =
+      column === 'Name' ? `${column} ${sortButton}` : column
     header.appendChild(headerCell)
   }
   tableReference.appendChild(header)
@@ -70,16 +75,10 @@ function updateBooks(tableReference, data) {
   })
   tableReference.replaceChild(newBody, tableReference.tBodies[0])
 }
-function getUnique(array) {
-  const arrayStringified = array.map((item) => JSON.stringify(item))
-  console.log(arrayStringified)
-  return [...new Set(arrayStringified)].map((item) => JSON.parse(item))
-}
 
 async function loadAndShowBooks() {
   bookList = await loadBooks()
   let uniquebookList = getUnique(bookList)
-  console.log(bookList, uniquebookList)
   const columns = ['Name', 'Author']
   const tableReference = document.getElementsByTagName('table')[0]
   if (bookList.length > 0) {
@@ -89,21 +88,22 @@ async function loadAndShowBooks() {
 // function sleep(ms) {
 //   return new Promise((resolve) => setTimeout(resolve, ms))
 // }
+function updateSort() {
+  const tableReference = document.getElementsByTagName('table')[0]
+  const newList = getUnique(bookList).sort((a, b) =>
+    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+  )
+  updateBooks(tableReference, newList)
+}
+function updateSearch(value) {
+  const newList = getUnique(bookList).filter((book) => {
+    return book.title.includes(value)
+  })
+  const tableReference = document.getElementsByTagName('table')[0]
+  updateBooks(tableReference, newList)
+}
 
-function updateSearch(event) {
-  console.log(event.value)
-  if (event.value.length > 0) {
-    const newList = bookList.filter((book) => {
-      return book.title.includes(event.value)
-    })
-    console.log(newList)
-    const columns = ['Name', 'Author']
-    const tableReference = document.getElementsByTagName('table')[0]
-    if (bookList.length > 0) {
-      updateBooks(tableReference, newList)
-    }
-  } else {
-    const tableReference = document.getElementsByTagName('table')[0]
-    updateBooks(tableReference, bookList)
-  }
+getUnique = (array) => {
+  const arrayStringified = array.map((item) => JSON.stringify(item))
+  return [...new Set(arrayStringified)].map((item) => JSON.parse(item))
 }

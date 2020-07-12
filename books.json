@@ -108,5 +108,16 @@
     "pages": 278,
     "description": "No matter how much experience you have with JavaScript, odds are you don’t fully understand the language. As part of the You Don’t Know JS series, this compact guide focuses on new features available in ECMAScript 6 (ES6), the latest version of the standard upon which JavaScript is built.",
     "website": "https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20&%20beyond"
+  },
+  {
+    "isbn": "978-1949815009",
+    "title": "How JavaScript Works",
+    "subtitle": "The shocking blockbuster that dares to rip the lid off of behind the scenes!",
+    "author": "Douglas Crockford ",
+    "published": "2018-10-08T00:00:00.000Z",
+    "publisher": "Virgule-Solidus",
+    "pages": 279,
+    "description": "Douglas Crockford starts by looking at the fundamentals: names, numbers, booleans, characters, and bottom values. JavaScript’s number type is shown to be faulty and limiting, but then Crockford shows how to repair those problems.",
+    "website": "https://howjavascriptworks.com/sample.html"
   }
 ]
