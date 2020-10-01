@@ -1,0 +1,85 @@
+body {
+  background: rgb(241, 241, 241);
+  font-family: Arial;
+}
+
+.pricing {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  padding: 0px;
+}
+.pricing h2 {
+  padding: 0;
+  text-align: center;
+  margin: 0;
+  white-space: nowrap;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: 500;
+}
+.pricing .price {
+  background-color: rgb(188, 188, 188);
+  font-size: 30px;
+  color: rgb(117, 122, 116);
+  width: 100%;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: 700;
+}
+.action {
+  background-color: rgb(241, 241, 241);
+  padding: 10px;
+}
+.action button {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  border-radius: 4px;
+}
+.action button:hover {
+  box-sizing: 2px 2px 2px #555;
+  cursor: pointer;
+}
+
+.basic,
+.basic button {
+  background-color: rgb(217, 84, 79);
+  border: 1px solid rgb(217, 84, 79);
+}
+
+.pro,
+.pro button {
+  background-color: rgb(239, 173, 77);
+  border: 1px solid rgb(239, 173, 77);
+}
+.premium,
+.premium button {
+  background: rgb(91, 184, 93);
+  border: 1px solid rgb(91, 184, 93);
+}
+
+.basic,
+.pro,
+.premium {
+  width: 33%;
+  padding: 0;
+  color: #fff;
+  margin: 20px;
+  border-radius: 4px;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+.features li {
+  background-color: #fff;
+  color: rgb(117, 122, 116);
+  border-bottom: 1px solid rgb(167, 167, 167);
+  padding: 10px;
+}
